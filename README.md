@@ -11,3 +11,9 @@ which will contain a signed/notarized app ready to install just like any other M
 
 The first time you launch and use the app, you'll be asked to grant it permissions for input monitoring and 
 accessibility features. These are used to intercept keyboard events.
+
+
+## About
+
+Although there are a couple existing applications that provide this functionality, none of them were Open Source and I 
+didn't want to give elevated permissions to those apps if I could not verify the source code.
