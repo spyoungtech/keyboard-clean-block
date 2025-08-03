@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Bundle Identification -->
+    <key>CFBundleExecutable</key>
+    <string>kbcleanblock</string>
+    <key>CFBundleIdentifier</key>
+    <string>io.yesolutions.keyboardcleanblock</string>
+    <key>CFBundleName</key>
+    <string>KeyboardCleanBlock</string>
+    <key>CFBundleDisplayName</key>
+    <string>Keyboard Clean Block</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>KCBk</string>
+
+    <!-- Application Icon -->
+    <key>CFBundleIconFile</key>
+    <string>AppIcon.icns</string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
+
+    <!-- System Requirements -->
+    <key>LSMinimumSystemVersion</key>
+    <string>10.15</string>
+    <key>LSRequiresNativeExecution</key>
+    <true/>
+
+    <!-- Application Behavior -->
+    <key>LSUIElement</key>
+    <false/>
+    <key>LSBackgroundOnly</key>
+    <false/>
+    <key>NSSupportsAutomaticTermination</key>
+    <true/>
+    <key>NSSupportsSuddenTermination</key>
+    <false/>
+
+    <!-- Privacy and Permissions -->
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+        <dict>
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategorySystemBootTime</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <string>35F9.1</string>
+            </array>
+        </dict>
+    </array>
+
+    <!-- Accessibility Usage Description -->
+    <key>NSSystemAdministrationUsageDescription</key>
+    <string>Keyboard Clean Block requires accessibility permissions to temporarily disable keyboard input for cleaning purposes. This allows you to safely clean your keyboard without accidentally triggering key presses.</string>
+
+    <!-- Application Category -->
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.utilities</string>
+
+    <!-- Copyright and Legal -->
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2025 Young Enterprise Solutions, LLC. All rights reserved.</string>
+
+    <!-- Document Types (if any) -->
+    <key>CFBundleDocumentTypes</key>
+    <array/>
+
+    <!-- URL Schemes (if any) -->
+    <key>CFBundleURLTypes</key>
+    <array/>
+
+    <!-- High Resolution Support -->
+    <key>NSHighResolutionCapable</key>
+    <true/>
+
+    <!-- Sandboxing (set to false for accessibility features) -->
+    <key>com.apple.security.app-sandbox</key>
+    <false/>
+
+    <!-- Hardened Runtime Compatibility -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <false/>
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <false/>
+    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+    <false/>
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <false/>
+
+    <!-- Version Information -->
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+
+    <!-- Development Information -->
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleAllowMixedLocalizations</key>
+    <true/>
+    <key>CFBundleLocalizations</key>
+    <array>
+        <string>en</string>
+    </array>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+[package]
+name = "kbcleanblock"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+eframe = "0.32.0"
+
+[profile.release]
+opt-level = "z"
+codegen-units = 1
+lto = true
