@@ -66,16 +66,10 @@ if [ -f "icon.png" ]; then
 
     
     
-    sips -z 16 16 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_16x16.png" >/dev/null 2>&1
-    sips -z 32 32 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_16x16@2x.png" >/dev/null 2>&1
     sips -z 32 32 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_32x32.png" >/dev/null 2>&1
-    sips -z 64 64 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_32x32@2x.png" >/dev/null 2>&1
     sips -z 128 128 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_128x128.png" >/dev/null 2>&1
-    sips -z 256 256 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_128x128@2x.png" >/dev/null 2>&1
     sips -z 256 256 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_256x256.png" >/dev/null 2>&1
-    sips -z 512 512 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_256x256@2x.png" >/dev/null 2>&1
     sips -z 512 512 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_512x512.png" >/dev/null 2>&1
-    sips -z 1024 1024 icon.png --out "${APP_NAME}.app/Contents/Resources/AppIcon.iconset/icon_512x512@2x.png" >/dev/null 2>&1
 
     
     iconutil -c icns "${APP_NAME}.app/Contents/Resources/AppIcon.iconset" -o "${APP_NAME}.app/Contents/Resources/AppIcon.icns"
