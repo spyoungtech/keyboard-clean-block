@@ -32,6 +32,7 @@ unsafe extern "C" {
     ) -> *mut CFRunLoopSource;
     fn CFMachPortInvalidate(port: *mut CFMachPort);
     fn CFRelease(cf: *const c_void);
+    static kCFRunLoopCommonModes: *const c_void;
 
     fn CGEventTapCreate(
         tap: u32,
@@ -44,8 +45,6 @@ unsafe extern "C" {
     fn CGEventTapEnable(tap: *mut CFMachPort, enable: bool);
     fn CGPreflightListenEventAccess() -> bool;
     fn CGRequestListenEventAccess() -> bool;
-
-    static kCFRunLoopCommonModes: *const c_void;
 }
 
 const KCG_HID_EVENT_TAP: u32 = 0;
@@ -55,8 +54,11 @@ const KCG_EVENT_TAP_OPTION_DEFAULT: u32 = 0;
 const KCG_EVENT_KEY_DOWN: u32 = 10;
 const KCG_EVENT_KEY_UP: u32 = 11;
 const KCG_EVENT_FLAGS_CHANGED: u32 = 12;
-const KCG_EVENT_MASK_FOR_ALL_KEYBOARD_EVENTS: u64 =
-    (1 << KCG_EVENT_KEY_DOWN) | (1 << KCG_EVENT_KEY_UP) | (1 << KCG_EVENT_FLAGS_CHANGED);
+const KCG_EVENT_SYSTEM_DEFINED: u32 = 14; // For media/volume keys
+const KCG_EVENT_MASK_FOR_ALL_KEYBOARD_EVENTS: u64 = (1 << KCG_EVENT_KEY_DOWN)
+    | (1 << KCG_EVENT_KEY_UP)
+    | (1 << KCG_EVENT_FLAGS_CHANGED)
+    | (1 << KCG_EVENT_SYSTEM_DEFINED); // Add system defined events
 
 static BLOCKING_ACTIVE: AtomicBool = AtomicBool::new(false);
 static mut EVENT_TAP: *mut CFMachPort = ptr::null_mut();
@@ -68,10 +70,11 @@ extern "C" fn event_tap_callback(
     event: *mut c_void,
     _user_info: *mut c_void,
 ) -> *mut c_void {
-    if (event_type == KCG_EVENT_KEY_DOWN
-        || event_type == KCG_EVENT_KEY_UP
-        || event_type == KCG_EVENT_FLAGS_CHANGED)
-        && BLOCKING_ACTIVE.load(Ordering::Relaxed)
+    if (event_type == KCG_EVENT_KEY_DOWN ||
+        event_type == KCG_EVENT_KEY_UP ||
+        event_type == KCG_EVENT_FLAGS_CHANGED ||
+        event_type == KCG_EVENT_SYSTEM_DEFINED) &&
+        BLOCKING_ACTIVE.load(Ordering::Relaxed)
     {
         ptr::null_mut()
     } else {
@@ -107,7 +110,7 @@ impl KeyboardBlockerApp {
                 self.permission_checked = true;
 
                 if !self.has_permissions {
-                    self.status_message = "❌ Accessibility permissions required".to_string();
+                    self.status_message = "Accessibility permissions required".to_string();
                     CGRequestListenEventAccess();
                 }
             }
@@ -120,6 +123,7 @@ impl KeyboardBlockerApp {
         }
 
         unsafe {
+            // Try HID event tap first
             EVENT_TAP = CGEventTapCreate(
                 KCG_HID_EVENT_TAP,
                 KCG_HEAD_INSERT_EVENT_TAP,
@@ -130,6 +134,7 @@ impl KeyboardBlockerApp {
             );
 
             if EVENT_TAP.is_null() {
+                // Fallback to session event tap
                 EVENT_TAP = CGEventTapCreate(
                     KCG_SESSION_EVENT_TAP,
                     KCG_HEAD_INSERT_EVENT_TAP,

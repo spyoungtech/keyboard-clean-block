@@ -17,8 +17,3 @@ accessibility features. These are used to intercept keyboard events.
 
 Although there are a couple existing applications that provide this functionality, none of them were Open Source and I 
 didn't want to give elevated permissions to those apps if I could not verify the source code.
-
-## Known limitations
-
-- Media keys (e.g., volume keys and play/pause buttons) and the power button (lock) will still function even while the keyboard block is active.
-- If you press the power button and your system goes to the lock screen and input is not blocked while on the lock screen
