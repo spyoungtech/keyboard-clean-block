@@ -20,5 +20,5 @@ didn't want to give elevated permissions to those apps if I could not verify the
 
 ## Known limitations
 
-- The volume keys and power button (lock) will still function even while the keyboard block is active. 
+- Media keys (e.g., volume keys and play/pause buttons) and the power button (lock) will still function even while the keyboard block is active.
 - If you press the power button and your system goes to the lock screen and input is not blocked while on the lock screen
