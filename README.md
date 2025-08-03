@@ -17,3 +17,8 @@ accessibility features. These are used to intercept keyboard events.
 
 Although there are a couple existing applications that provide this functionality, none of them were Open Source and I 
 didn't want to give elevated permissions to those apps if I could not verify the source code.
+
+
+## Known Issues
+
+- The CapsLock key will still toggle while blocking is active
