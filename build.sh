@@ -9,7 +9,7 @@ set -e
 APP_NAME="KeyboardCleanBlock"
 BUNDLE_ID="io.yesolutions.keyboardcleanblock"  
 EXECUTABLE_NAME="kbcleanblock"
-VERSION="1.0.0"
+VERSION="$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[] | select(.name == "kbcleanblock") | .version')"
 BUILD_NUMBER="1"
 
 
